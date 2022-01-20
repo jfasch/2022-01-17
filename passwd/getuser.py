@@ -7,12 +7,7 @@ USERS = []
 if len(sys.argv) > 2:
     USERS = sys.argv[2:]
 
-userdatabase = passwd.create_db(FILENAME)
+db = passwd.UserDataBase(FILENAME)
 for name in USERS:
-    record = passwd.search_db(userdatabase, name)
-
-    print(f"""User: {name}
-UID: {record['uid']}
-GID: {record['gid']}
-Home: {record['home']}
-Shell: {record['shell']}""")
+    record = db.search(name)
+    print(record)
